@@ -11,7 +11,7 @@ public class DatabaseConfig {
 
     static {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/);
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/");
         config.setUsername("anonymous");
         config.setPassword("*********************");
         config.setMaximumPoolSize(10);

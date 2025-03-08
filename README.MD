@@ -17,6 +17,9 @@ src/
 │   ├── model/
 │   │   ├── Student.java
 │   │   ├── StudentDao.java
+│   ├── pages/
+│   │   ├── EditWindow 
+│   │   ├── SearchWindow
 │
 └── README.md
 ```
@@ -100,14 +103,6 @@ Or Use Swing to use Project
 
 ` just run main.java to see :)`
 
-#### Reading Student Data
-
-To display the list of students, run StudentReader:
-
-```
-java -cp target/your_project.jar org.example.util.StudentReader
-```
-
 ## Author
 
 ✍ Reza
@@ -116,4 +111,4 @@ java -cp target/your_project.jar org.example.util.StudentReader
 
 ## License
 
-🚀 This project is released under the MIT License.
+🚀 This project is released for Fun :)
