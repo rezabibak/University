@@ -7,7 +7,7 @@ import org.example.StudentInterface;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
-
+// NOTE Java Swing is obsolete, consider to use an alternative framework like Java-Fx
 public class EditWindow extends JFrame {
     private final StudentDao studentDao = new StudentDao();
 
