@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+// NOTE it's better to define student dao functionalities in a StudentDao interface and then implement it;
 public class StudentDao {
 
     //Create student
@@ -19,11 +20,16 @@ public class StudentDao {
             conn.setAutoCommit(false);
 
             try {
+                // NOTE one of the general solution for generating id for a table is using sequence.
+                // some databases like oracle has a builtin sequence object others like MySql has auto-generate id feature
+                // as a suggestion you can consider to use these solutions instead.
+
                 //Call getNextId to create new id
                 long nextId = getNextId(conn);
 
                 LocalDateTime entryDate = LocalDateTime.now();
                 String year = String.valueOf(entryDate.getYear());
+                // NOTE what dose 11213 means? is it a magic number !!?
                 //Create studentID like this year + 11213 + id => Ex: 2025 11213 014
                 int sequence = getNextSequence(conn, year);
                 String studentId = year + "11213" + String.format("%03d", sequence);
@@ -52,7 +58,7 @@ public class StudentDao {
                 conn.commit();
             } catch (Exception e) {
                 conn.rollback();
-                throw e;
+                throw e;// NOTE handel expectation properly. this is not a good way to handel transaction exceptions
             } finally {
                 conn.setAutoCommit(true);
             }
@@ -118,6 +124,12 @@ public class StudentDao {
     }
 
     private StudentInterface createStudentFromResultSet(ResultSet rs) throws SQLException {
+        // NOTE one of the usage of Reflection to create Student object in runtime is here.
+        // Inset of having a pre-defined factory method like createStudent() you can create and set student
+        // object field for each result set column. for example
+        // if (rs.getString("first_name") != null)
+        //    set firstName field via reflection
+        // ORM Frameworks like Hibernate, MyBatis or Spring data jdbc use this technic to map q query result to an entity object
         return StudentFactory.createStudent(
                 rs.getLong("id"),
                 rs.getString("student_id"),

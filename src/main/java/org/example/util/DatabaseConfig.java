@@ -9,6 +9,8 @@ import java.sql.SQLException;
 public class DatabaseConfig {
     private static final HikariDataSource dataSource;
 
+    // NOE is better to read configuration data from Property file
+    // Take look at Properties class in java
     static {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://localhost:3306/");
